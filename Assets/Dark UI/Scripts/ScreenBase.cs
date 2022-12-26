@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using DG.Tweening;
+using UnityEngine.UI;
 
 namespace Screens
 {
@@ -20,6 +21,8 @@ public class ScreenBase : MonoBehaviour
         public List<Transform> listOfObjects;
         public List<Typer> listOfPhrases;
 
+        public Image uiBackground;
+
         public bool startHide = false;
 
         [Header("Animation")]
@@ -35,14 +38,14 @@ public class ScreenBase : MonoBehaviour
         }
 
         [Button]
-        protected virtual void Show()
+        public virtual void Show()
         {
             ShowObjects();
             Debug.Log("Show");
         }
 
         [Button]
-        protected virtual void Hide()
+        public virtual void Hide()
         {
             HideObjects();
             Debug.Log("Show");
@@ -51,6 +54,7 @@ public class ScreenBase : MonoBehaviour
         private void HideObjects()
         {
             listOfObjects.ForEach(i => i.gameObject.SetActive(false));
+            uiBackground.enabled = false;
         }
 
         private void ShowObjects()
@@ -64,6 +68,7 @@ public class ScreenBase : MonoBehaviour
             }
 
             Invoke(nameof(StartType), delayBetweenObjects * listOfObjects.Count);
+            uiBackground.enabled = true;
         }
 
         private void StartType()
