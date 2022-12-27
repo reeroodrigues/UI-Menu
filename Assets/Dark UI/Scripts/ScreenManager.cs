@@ -6,7 +6,6 @@ using DG.Tweening;
 
 namespace Screens
 {
-
     public class ScreenManager : Singleton<ScreenManager>
     {
         public List<ScreenBase> screenBases;
@@ -17,6 +16,7 @@ namespace Screens
 
         private void Start()
         {
+            transform.Scale(2);
             HideAll();
             ShowByType(startScreens);
         }
